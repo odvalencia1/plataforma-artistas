@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,6 +44,8 @@ public class Evento implements Serializable{
 	private String lugar;
 	@Column(name="pago")
 	private String pago;
+	@Enumerated(EnumType.STRING)
+	private Tipo_Estado estado;
 	public Evento() {
 		super();
 	}
