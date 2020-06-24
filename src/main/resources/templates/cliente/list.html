@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::frgHead">
+
+</head>
+<body class="is-preload landing">
+	<div id="page-wrapper">
+		<header id="header" th:replace="layout::frgHeader"></header>
+		<div id="main" class="wrapper style1">
+		<section >
+			<h3 th:text="${title}"></h3>
+
+			<div class="table-wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th>Nombre</th>
+								<th>Apellido</th>
+								<th>C&eacute;dula</th>
+								<th>Fecha de nacimiento</th>
+							<th><a class="button"
+								th:href="@{/cliente/create}"><i class="fas fa-plus-circle fa-sm text-white-50"></i>
+									&nbsp;Nuevo &nbsp; </a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="a : ${clientes}">
+							<td th:text="${a.nombre}"></td>
+								<td th:text="${a.apellido}"></td>
+								<td th:text="${a.cedula}"></td>
+								<td th:text="${a.fechaNac()}"></td>
+							<td><a class="button"
+								th:href="@{/cliente/update/} + ${a.idPersona}"><i
+									class="fas fa-edit fa-sm text-white-50"></i> &nbsp;Actualizar</a> <a
+								class="button" th:href="@{/cliente/retrieve/} + ${a.idPersona}"><i
+									class="fas fa-eye fa-sm text-white-50"></i>&nbsp;Consultar</a></td>
+
+
+						</tr>
+					</tbody>
+
+
+				</table>
+				
+			</div>
+		</section>
+		</div>
+		
+		
+		<footer id="footer" th:replace="layout::frgFooter" ></footer>
+	</div>
+	<div  th:replace="layout::frgScripts" ></div>
+</body>
+</html>

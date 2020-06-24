@@ -14,9 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity 
-@Table(name="generos")
-public class Genero  implements Serializable{
-	
+@Table(name="estados")
+public class TipoEstado implements Serializable {
 	/**
 	 * 
 	 */
@@ -25,27 +24,29 @@ public class Genero  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional=false)
-	@Column(name="pk_genero")
-	private Integer idGenero;
+	@Column(name="pk_estado")
+	private Integer idEstado;
 	
 	@Column(name="nombre")
 	private String nombre;
+	
+	
 
-	public Genero() {
+	public TipoEstado() {
 		super();
+	}
+
+	public TipoEstado(Integer id) {
+		super();
+		this.idEstado=id;
 	}
 	
-	public Genero(Integer id) {
-		super();
-		this.idGenero=id;
+	public Integer getIdEstado() {
+		return idEstado;
 	}
 
-	public Integer getIdGenero() {
-		return idGenero;
-	}
-
-	public void setIdGenero(Integer idGenero) {
-		this.idGenero = idGenero;
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 
 	public String getNombre() {
@@ -55,9 +56,18 @@ public class Genero  implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	//relación
-	@OneToMany(mappedBy= "genero",fetch=FetchType.LAZY)
-	private List<Artista> artistas;
+	
+	@OneToMany(mappedBy= "estado",fetch=FetchType.LAZY)
+	private List<Evento> eventos;
+
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+
+	
 	
 }
-	

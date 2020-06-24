@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::frgHead"></head>
+<body class="is-preload landing">
+	<div id="page-wrapper">
+		<div th:replace="layout ::frgHeader"></div>
+		<div id="main" class="wrapper style1">
+			<section>
+				<h3 th:text="${title}" class="h4 text-gray-900 mb-4"></h3>
+				<form method="post" th:object=${evento} th:action="@{/evento/save}"
+					enctype="multipart/form-data" id="fileUploadForm">
+					<div class="row gtr-uniform gtr-50">
+					<div class="col-12">
+						<h4>Artista</h4>
+						<select th:field="*{artista.idArtista}">
+							<option value=0>- Seleccione -</option>
+							<option th:each="ar: ${artistas}" th:value="${ar.idArtista}"
+								th:text="${ar.nombreArtistico}"></option>
+						</select>
+					</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" th:field="*{nombre}"
+								placeholder="Nombre Evento" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<input type="text" th:field="*{lugar}" placeholder="Lugar" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<input type="date" th:field="*{fecha}" min="2020-06-24" placeholder="Fecha" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" th:field="*{pago}" placeholder="Pago" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<h4>Hora Inicio</h4>
+							<input type="text" th:field="*{horaInicio}"  />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<h4>Hora Fin</h4>
+							<input type="text" th:field="*{horaFin}"/>
+						</div>
+					
+					<div class="col-6 col-12-xsmall">
+						<h4>Cliente</h4>
+						<select th:field="*{cliente.idPersona}">
+							<option value=0>- Seleccione -</option>
+							<option th:each="ar: ${clientes}" th:value="${ar.idPersona}"
+								th:text="${ar}"></option>
+						</select>
+					</div>
+					
+					<div class="col-6 col-12-xsmall">
+						<h4>Estado</h4>
+						<select th:field="*{estado.idEstado}">
+							<option value=0>- Seleccione -</option>
+							<option th:each="e: ${estados}" th:value="${e.idEstado}"
+								th:text="${e.nombre}"></option>
+						</select>
+					</div>
+
+					<div class="col-12">
+						<ul class="actions">
+							<i class="fas fa-check-circle fa-smtext-white-50"> <input
+								type="submit" class="primary " value="Guardar" />
+							</i>
+							<a th:href="@{/evento/list}" class="button"><i
+								class="fas fa-times fa-sm text-white-50"></i>&nbsp;Cancelar</a>
+
+						</ul>
+					</div>
+					<input type="hidden" th:field="*{idEvento}" />
+		</div>
+		
+		</form>
+		</section>
+	</div>
+	<footer id="footer" th:replace="layout::frgFooter"></footer>
+	</div>
+	<div th:replace="layout::frgScripts"></div>
+</body>
+</html>

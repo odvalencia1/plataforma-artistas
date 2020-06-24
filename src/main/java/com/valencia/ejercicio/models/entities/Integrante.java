@@ -20,7 +20,7 @@ public class Integrante extends Persona implements Serializable{
 	}
 	public Integrante(Integer id) {
 		super();
-		this.setIdpersona(id);// TODO Auto-generated constructor stub
+		this.setIdPersona(id);// TODO Auto-generated constructor stub
 	}
 	public String getFoto() {
 		return foto;

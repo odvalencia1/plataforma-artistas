@@ -4,9 +4,9 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Landed by HTML5 UP</title>
+<title>MusicLand</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -31,9 +31,9 @@
 					<li><a th:href="@{/index.html}">Inicio</a></li>
 					<li><a href="#">Administrar</a>
 						<ul>
-							<li><a th:href="@{/artistas/list}">Artistas</a></li>
-							<li><a th:href="@{/eventos/list}">Eventos</a></li>
-
+							<li><a th:href="@{/artista/list}">Artistas</a></li>
+							<li><a th:href="@{/evento/list}">Eventos</a></li>
+							<li><a th:href="@{/cliente/list}">Clientes</a></li>
 
 						</ul></li>
 					<li><a th:href="@{/Contactos.html}">Contactos</a></li>
@@ -57,16 +57,18 @@
 			</div>
 			<a href="#one" class="goto-next scrolly">Next</a>
 		</section>
-		<section id="five" class=" style3 special fade">
+		<section id="one" class=" style3 special fade">
 			<div class="container">
 				<header>
 					<h2>Buscar Artista</h2>
 
 				</header>
-				<form method="post" action="#" class="cta">
+				<form method="post" th:object=${artista}
+					th:action="@{/artista/buscar}" enctype="multipart/form-data"
+					id="fileUploadForm">
 					<div class="row gtr-uniform gtr-50">
 						<div class="col-8 col-12-xsmall">
-							<input type="email" name="email" id="email"
+							<input type="text" name="nombre" id="nombre"
 								placeholder="Nombre del Artista" />
 						</div>
 						<div class="col-4 col-12-xsmall">
@@ -80,67 +82,73 @@
 
 
 		<!-- Two -->
-		<section id="two" class="spotlight style2 right">
-			<span class="image fit main"><img src="images/artista2.jpg"
-				alt="" /></span>
-			<div class="content">
-				<header>
-					<h2>Nombre Artista</h2>
-
-				</header>
-				<p>Descripcion</p>
-
-				<ul class="icons">
-					<li><a href="#" class="icon brands alt fa-twitter"><span
-							class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands alt fa-facebook-f"><span
-							class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands alt fa-instagram"><span
-							class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon solid alt fa-envelope"><span
-							class="label">Email</span></a></li>
-				</ul>
-				<ul class="actions">
-					<li><a href="#" class="button">Mas Información</a></li>
-				</ul>
+		<div th:each="ar: ${artistas}">
 			
-		</section>
+				<section class="spotlight style3 left" th:if="*{ar.idArtista%2==0}">
+					<span class="image fit main"><img
+						th:src="@{'/uploads/'+${ar.foto}}" alt="" /></span>
+					<div class="content">
+						<header>
+							<h2 th:text="${ar.nombreArtistico}"></h2>
 
-		<!-- Three -->
-		<section id="three" class="spotlight style3 left">
-			<span class="image fit main bottom"><img
-				src="images/pic04.jpg" alt="" /></span>
-			<div class="content">
-				<header>
-					<h2>Interdum felis blandit</h2>
-					
-				</header>
-				<p>Feugiat accumsan lorem eu ac lorem amet ac arcu phasellus
-					tortor enim mi mi nisi praesent adipiscing. Integer mi sed nascetur
-					cep aliquet augue varius tempus lobortis porttitor lorem et
-					accumsan consequat adipiscing lorem.</p>
-				<ul class="icons">
-					<li><a href="#" class="icon brands alt fa-twitter"><span
-							class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands alt fa-facebook-f"><span
-							class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands alt fa-linkedin-in"><span
-							class="label">LinkedIn</span></a></li>
-					<li><a href="#" class="icon brands alt fa-instagram"><span
-							class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands alt fa-github"><span
-							class="label">GitHub</span></a></li>
-					<li><a href="#" class="icon solid alt fa-envelope"><span
-							class="label">Email</span></a></li>
-				</ul>
-				<ul class="actions">
-					<li><a href="#" class="button">Mas Información</a></li>
-				</ul>
-			</div>
-			<a href="#four" class="goto-next scrolly">Next</a>
-		</section>
+						</header>
+						<p th:text="'Número Teléfono: '+${ar.numeroTelefonico}"></p>
+						<p th:text="'Costo: '+${ar.costo}"></p>
 
-		
+						<ul class="icons">
+							<li><a th:href="${ar.linkTwitter}"
+								class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a th:href="${ar.linkFacebook}"
+								class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a th:href="${ar.linkInstagram}"
+								class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a th:href="${ar.correo}"
+								class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="actions">
+							<li><a th:href="@{/artista/ver/} + ${ar.idArtista}"
+								class="button">Mas Información</a></li>
+						</ul>
+					</div>
+
+				</section>
+
+			
+
+			
+				<section class="spotlight style2 right"th:if="*{ar.idArtista%2!=0}" >
+					<span class="image fit main"><img
+						th:src="@{'/uploads/'+${ar.foto}}" alt="" /></span>
+					<div class="content">
+						<header>
+							<h2 th:text="${ar.nombreArtistico}"></h2>
+
+						</header>
+						<p th:text="'Número Teléfono: '+${ar.numeroTelefonico}"></p>
+						<p th:text="'Costo: '+${ar.costo}"></p>
+
+						<ul class="icons">
+							<li><a th:href="${ar.linkTwitter}"
+								class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a th:href="${ar.linkFacebook}"
+								class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a th:href="${ar.linkInstagram}"
+								class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a th:href="${ar.correo}"
+								class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="actions">
+							<li><a th:href="@{/artista/ver/} + ${ar.idArtista}"
+								class="button">Mas Información</a></li>
+						</ul>
+					</div>
+
+				</section>
+
+			
+		</div>
+
+
 		<!-- Five -->
 
 
@@ -161,7 +169,7 @@
 						class="label">Email</span></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Todos los dereschos reservados.</li>
+				<li>&copy; Todos los derechos reservados.</li>
 				<li>Diseñado por: David Calapaqui & Odalis Valencia</li>
 			</ul>
 		</footer>

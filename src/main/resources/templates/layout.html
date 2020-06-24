@@ -1,62 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="frgHead">
-<title>Landed by HTML5 UP</title>
+<title>MusicLand</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" th: href="@{/assets/css/main.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 <noscript>
-	<link rel="stylesheet" href="assets/css/noscript.css" />
+	<link rel="stylesheet" th:href="@{/assets/css/noscript.css}" />
 </noscript>
+
 </head>
-<body class="is-preload landing">
-<div id="page-wrapper">
+<body class="is-preload landing" >
+	<div id="page-wrapper">
 
-			<!-- Header -->
-				<header th:fragment ="frgHeader" id="header">
-					<h1 id="logo"><a th: href="@{/index.html}"> <i class="fas fa-music fa-fw "></i> MusicLand</a></h1>
-					<nav id="nav">
+		<!-- Header -->
+		<header id="header" th:fragment="frgHeader">
+			<h1 id="logo">
+				<a th:href="@{/index.html}"> <i class="fas fa-music fa-fw "></i>
+					MusicLand
+				</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+
+					<li><a th:href="@{/index.html}">Inicio</a></li>
+					<li><a href="#">Administrar</a>
 						<ul>
-							<li><a th:href="@{/index.html}">Inicio</a></li>
-							<li>
-								<a href="#">Administrar</a>
-								<ul>
-									<li><a th:href="@{/artistas/list}">Artistas</a></li>
-									<li><a th:href="@{/eventos/list}">Eventos</a></li>
-									
-									
-								</ul>
-							</li>
-							<li><a th:href="@{/Contactos.html}">Contactos</a></li>
-							<li><a href="elements.html">Acerca De</a></li>
-							<li><a href="#" class="button primary">Ingresar</a></li>
-						</ul>
-					</nav>
-				</header>
+							<li><a th:href="@{/artista/list}">Artistas</a></li>
+							<li><a th:href="@{/evento/list}">Eventos</a></li>
+							<li><a th:href="@{/cliente/list}">Clientes</a></li>
 
-			<footer  th:fragment ="frgFooter" id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Todos los dereschos reservados.</li><li>Diseñado por:  David Calapaqui & Odalis Valencia </li>
-					</ul>
-				</footer>
+						</ul></li>
+					<li><a th:href="@{/Contactos.html}">Contactos</a></li>
+					<li><a href="elements.html">Acerca De</a></li>
+					<li><a href="#" class="button primary">Ingresar</a></li>
+				</ul>
+			</nav>
+		</header>
+	<footer id="footer" th:fragment="frgFooter" >
+			<ul class="icons">
+				<li><a href="#" class="icon brands alt fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands alt fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands alt fa-linkedin-in"><span
+						class="label">LinkedIn</span></a></li>
+				<li><a href="#" class="icon brands alt fa-instagram"><span
+						class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands alt fa-github"><span
+						class="label">GitHub</span></a></li>
+				<li><a href="#" class="icon solid alt fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Todos los derechos reservados.</li>
+				<li>Diseñado por: David Calapaqui & Odalis Valencia</li>
+			</ul>
+		</footer>
 
-
+	</div>
+	<div  th:fragment="frgScripts" >
+	<!-- Scripts -->
 	<script th:src="@{/assets/js/jquery.min.js}"></script>
-	<script th:src="@{/aassets/js/jquery.scrolly.min.js}"></script>
-	<script th:src="@{/aassets/js/jquery.dropotron.min.js}"></script>
-	<script th:src="@{/aassets/js/jquery.scrollex.min.js}"></script>
-	<script th:src="@{/aassets/js/browser.min.js}"></script>
-	<script th:src="@{/aassets/js/breakpoints.min.js}"></script>
-	<script th:src="@{/aassets/js/util.js}"></script>
-	<script th:src="@{/aassets/js/main.js}"></script>
+	<script th:src="@{/assets/js/jquery.scrolly.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.dropotron.min.js}"></script>
+	<script th:src="@{/assets/js/jquery.scrollex.min.js}"></script>
+	<script th:src="@{/assets/js/browser.min.js}"></script>
+	<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+	<script th:src="@{/assets/js/util.js}"></script>
+	<script th:src="@{/assets/js/main.js}"></script>
+	</div>
+
+	
+	
 </body>
 </html>

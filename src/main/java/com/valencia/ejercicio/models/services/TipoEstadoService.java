@@ -6,26 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.valencia.ejercicio.models.data.IArtista;
-import com.valencia.ejercicio.models.entities.Artista;
-
-
+import com.valencia.ejercicio.models.data.ITipoEstado;
+import com.valencia.ejercicio.models.entities.TipoEstado;
 
 @Service
-public class ArtistaService implements IArtistaService {
+public class TipoEstadoService implements ITipoEstadoService {
 	@Autowired//Inyeccion de dependencia
-	private IArtista dao;
+	private ITipoEstado dao;
 	
 	@Override
 	@Transactional
-	public void save(Artista a) {
+	public void save(TipoEstado a) {
 		dao.save(a);
 		
 	}
 
 	@Override
 	@Transactional
-	public Artista findById(Integer id) {
+	public TipoEstado findById(Integer id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id).get();
 	}
@@ -39,8 +37,8 @@ public class ArtistaService implements IArtistaService {
 
 	@Override
 	@Transactional
-	public List<Artista> findAll() {
+	public List<TipoEstado> findAll() {
 		// TODO Auto-generated method stub
-		return (List<Artista> )dao.findAll();
+		return (List<TipoEstado> )dao.findAll();
 	}
 }

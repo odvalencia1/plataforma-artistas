@@ -24,7 +24,7 @@ public class Cliente extends Persona implements Serializable {
 
 	public Cliente(Integer id) {
 		super();
-		this.setIdpersona(id);
+		this.setIdPersona(id);
 		// TODO Auto-generated constructor stub
 	}
 	

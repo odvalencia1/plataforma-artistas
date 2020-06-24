@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,7 +31,7 @@ public class Artista implements Serializable  {
 	@Column(name="pk_artista")
 	public Integer idArtista;
 	
-	@Column(name="nombreArtistico")
+	@Column(name="nombre_artistico")
 	public String nombreArtistico;
 	@Column(name="foto")
 	public String foto;
@@ -45,8 +47,8 @@ public class Artista implements Serializable  {
 	public String linkFacebook;
 	@Column(name="link_instagram")
 	public String linkInstagram;
-	@Column(name="link_twitwr")
-	public String linkTwiter;
+	@Column(name="link_twitter")
+	public String linkTwitter;
 	public Artista() {
 		super();
 	}
@@ -129,16 +131,19 @@ public class Artista implements Serializable  {
 		this.linkInstagram = linkInstagram;
 	}
 
-	public String getLinkTwiter() {
-		return linkTwiter;
-	}
-
-	public void setLinkTwiter(String linkTwiter) {
-		this.linkTwiter = linkTwiter;
-	}
+	
 	//relaciones
 	
 	
+	public String getLinkTwitter() {
+		return linkTwitter;
+	}
+
+	public void setLinkTwitter(String linkTwitter) {
+		this.linkTwitter = linkTwitter;
+	}
+
+
 	@OneToMany(mappedBy= "artista",fetch=FetchType.LAZY)
 	private List<Integrante> integrantes;
 	public List<Integrante> getIntegrantes() {
@@ -149,16 +154,21 @@ public class Artista implements Serializable  {
 		this.integrantes = integrantes;
 	}
 	
-	@OneToMany(mappedBy= "artista",fetch=FetchType.LAZY)
-	private List<Genero> generos;
-	public List<Genero> getGeneros() {
-		return generos;
+	@JoinColumn(name="fk_genero",referencedColumnName="pk_genero")
+	@ManyToOne
+	private Genero genero;
+	
+	
+	
+	public Genero getGenero() {
+		return genero;
 	}
 
-	public void setGeneros(List<Genero> generos) {
-		this.generos = generos;
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
-	
+
+
 	@OneToMany(mappedBy= "artista",fetch=FetchType.LAZY)
 	private List<Evento> eventos;
 	
@@ -170,6 +180,7 @@ public class Artista implements Serializable  {
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
+	
 	
 	
 }

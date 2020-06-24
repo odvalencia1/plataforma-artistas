@@ -1,8 +1,82 @@
 <!DOCTYPE html>
 
-<<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout::frgHead">
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::frgHead"></head>
+<body class="is-preload landing">
+	<div id="page-wrapper">
+		<div th:replace="layout ::frgHeader"></div>
+		<div id="main" class="wrapper style1">
+			<section>
+				<h3 th:text="${title}" class="h4 text-gray-900 mb-4"></h3>
+				<form method="post" th:object=${artista}
+					th:action="@{/artista/save}" enctype="multipart/form-data"
+					id="fileUploadForm">
+					<div class="row gtr-uniform gtr-50">
+						<div class="col-6 col-12-xsmall">
+							<input type="text" th:field="*{nombreArtistico}"
+								placeholder="Nombre Art&iacute;stico" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" th:field="*{numeroTelefonico}"
+								placeholder="N&uacute;mero de Tel&eacute;fono" />
+						</div>
 
+						<div class="col-6 col-12-xsmall">
+							<input type="email" th:field="*{correo}" placeholder="Correo" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="number" th:field="*{costo}" placeholder="Costo" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<input type="url" th:field="*{video}" placeholder="URL video" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<input type="url" th:field="*{linkFacebook}"
+								placeholder="Link Facebook" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<input type="url" th:field="*{linkInstagram}"
+								placeholder="Link Instagram" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="url" th:field="*{linkTwitter}"
+								placeholder="Link Twitter" />
+						</div>
+
+						<div class="col-6 col-12-xsmall">
+							<h4>Foto</h4>
+							<label for="file" > 
+							<input type="file" name="file" /> 
+							</label>
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<h4>Genero Musical</h4>
+							<select th:field="*{genero.idGenero}">
+								<option value=0>- Seleccione -</option>
+								<option th:each="ar: ${generos}" th:value="${ar.idGenero}"
+									th:text="${ar.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="col-12">
+							<ul class="actions">
+								<i class ="fas fa-check-circle fa-smtext-white-50">
+								<input type="submit" class="primary " value="Guardar" /> </i> 
+								<a th:href="@{/artista/list}"class="button"><i
+									class="fas fa-times fa-sm text-white-50"></i>&nbsp;Cancelar</a>
+								
+							</ul>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{idArtista}" />
+				</form>
+			</section>
+		</div>
+		<footer id="footer" th:replace="layout::frgFooter"></footer>
+	</div>
+	<div th:replace="layout::frgScripts"></div>
 </body>
 </html>

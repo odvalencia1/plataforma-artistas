@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::frgHead">
+</head>
+<body class="is-preload landing">
+	<div id="page-wrapper">
+		<div th:replace="layout ::frgHeader"></div>
+		<div id="main" class="wrapper style1">
+			<h3 th:text="${title}" class="h4 text-gray-900 mb-4"></h3>
+			<div class="row gtr-uniform gtr-50">
+				<div class="col-6 col-12-xsmall">
+					<h3>Nombre</h3>
+					<label th:text="${evento.nombre}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Artista</h3>
+					<label th:text="${evento.artista.nombreArtistico}"> </label>
+				</div>
+
+				<div class="col-6 col-12-xsmall">
+					<h3>Lugar</h3>
+					<label th:text="${evento.lugar}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Fecha</h3>
+					<label th:text="${evento.fechaEve()}"> </label>
+				</div>
+
+				<div class="col-6 col-12-xsmall">
+					<h3>Hora Inicio</h3>
+					<label th:text="${evento.horaInicio}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Hora Fin</h3>
+					<label th:text="${evento.horaFin}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Cliente</h3>
+					<label th:text="${evento.cliente}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Estado</h3>
+					<label th:text="${evento.estado.nombre}"> </label>
+				</div>
+				<div class="col-12">
+					<h3>&iquest;Desea eliminar el evento?</h3>
+				</div>
+				<div class="col-12">
+					<ul class="actions">
+						<a th:href="@{/evento/delete/} + ${evento.idEvento}"
+							class="button primary"><i
+							class="fas fa-trash fa-sm text-white-50"></i>&nbsp;Aceptar</a>
+						<a th:href="@{/evento/list}" class="button"><i
+							class="fas fa-times fa-sm text-white-50"></i>&nbsp;Cancelar</a>
+
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+		<footer id="footer" th:replace="layout::frgFooter"></footer>
+	</div>
+	<div th:replace="layout::frgScripts"></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::frgHead">
+</head>
+<body class="is-preload landing">
+	<div id="page-wrapper">
+		<div th:replace="layout ::frgHeader"></div>
+		<div id="main" class="wrapper style1">
+			<h3 th:text="${title}" class="h4 text-gray-900 mb-4"></h3>
+
+			<section id="banner">
+				<div class="content">
+					<header>
+						<h2 th:text="${artista.nombreArtistico}"></h2>
+						
+					</header>
+					<span class="image"><img
+						th:src="@{'/uploads/'+${artista.foto}}" alt="${artista.foto}" /></span>
+				</div>
+
+				<a href="#one" class="goto-next scrolly">Next</a>
+			</section>
+			<section id="one" class=" style3 special fade">
+				<div class="container">
+					<iframe width="560" height="315"
+						th:src="${artista.video}">
+					</iframe>
+				</div>
+
+			</section>
+
+
+			<div class="row gtr-uniform gtr-50">
+				<div class="col-6 col-12-xsmall">
+					<h3>Numero de tel&eacute;fono</h3>
+					<label th:text="${artista.numeroTelefonico}"> </label>
+				</div>
+
+				<div class="col-6 col-12-xsmall">
+					<h3>Correo</h3>
+					<label th:text="${artista.correo}"> </label>
+				</div>
+				<div class="col-6 col-12-xsmall">
+					<h3>Costo</h3>
+					<label th:text="${artista.costo}"> </label>
+				</div>
+
+				<div class="col-6 col-12-xsmall">
+					<h3>G&eacute;nero Musical</h3>
+					<label th:text="${artista.genero.nombre}"> </label>
+				</div>
+				<h3>Redes Sociales:</h3>
+				<ul class="icons">
+					<li><a th:href="${artista.linkTwitter}"
+						class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a th:href="${artista.linkFacebook}"
+						class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a th:href="${artista.linkInstagram}"
+						class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+				<div class="col-12">
+					<ul class="actions">
+						<a th:href="@{/reserva/reserv/} + ${artista.idArtista}"
+							class="button primary"><i
+							class="fas fa-trash fa-sm text-white-50"></i>&nbsp;Reservar</a>
+						<a th:href="@{/}" class="button"><i
+							class="fas fa-times fa-sm text-white-50"></i>&nbsp;Cancelar</a>
+
+					</ul>
+				</div>
+
+			</div>
+
+		</div>
+		<footer id="footer" th:replace="layout::frgFooter"></footer>
+	</div>
+	<div th:replace="layout::frgScripts"></div>
+</body>
+</html>
